@@ -1,4 +1,4 @@
-from turtle import Screen
+from turtle import Screen, Turtle
 
 
 class Game:
@@ -8,4 +8,3 @@ class Game:
         self.screen.title(title.upper())
         self.screen.colormode(255)
         self.screen.bgcolor(bg)
-
