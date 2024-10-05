@@ -1,4 +1,3 @@
-import time
 from turtle import Turtle
 
 
@@ -20,7 +19,8 @@ class Alien(Turtle):
         # create aliens
         self.create_aliens()
 
-        self.move = 20
+        self.direction = (20, 0)
+
 
     def create_aliens(self):
         for alien in range(1, 41):
@@ -40,12 +40,13 @@ class Alien(Turtle):
         return alien
 
     def move_aliens(self):
+        for alien in self.aliens:
+            alien.setpos(alien.pos() + self.direction)
+            if self.aliens[::-1][0].xcor() >= 340:
+                self.direction = (-20, 0)
+            if self.aliens[::-1][0].xcor() <= 72:
+                self.direction = (20, 0)
 
-        for alien in range(1, len(self.aliens) + 1):
-            new_x_cor = self.aliens[alien - 1].xcor() + self.move
-            self.aliens[alien - 1].goto(new_x_cor, self.aliens[alien - 1].ycor())
-            self.change_direction(self.aliens[alien - 1])
 
-    def change_direction(self, alien: Turtle):
-        if alien.xcor() >= 360 or alien.xcor() <= -360:
-            self.move *= - 1
+
+

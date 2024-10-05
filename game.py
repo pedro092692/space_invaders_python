@@ -17,5 +17,4 @@ class Game:
         while True:
             self.screen.update()
             self.aliens.move_aliens()
-
             time.sleep(0.3)
