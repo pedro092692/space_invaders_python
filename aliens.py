@@ -52,8 +52,8 @@ class Alien(Turtle):
             if self.aliens[::-1][0].xcor() <= 72:
                 self.direction = (20, 0)
 
-        # 13% probability of alien shots
-        if random.random() < 0.13:
+        # .9% probability of alien shots
+        if random.random() < 0.09:
             self.shoot()
         self.shot.move_shot(self.shots)
 
