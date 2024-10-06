@@ -23,6 +23,7 @@ class ScoreBoard(Turtle):
         self.max_score = CreateLabel(color='white', position=MAX_SCORE_POSITION, text=f'max score: {self.max_s}')
 
     def subtract_lives(self):
+        self.clear()
         self.lives -= 1
         self.write(f'Lives: {self.lives}', align=ALIGNMENT, font=FONT)
 
@@ -30,6 +31,17 @@ class ScoreBoard(Turtle):
         self.score_label.clear()
         self.score += 2
         self.score_label.write(f'score: {self.score}', align=ALIGNMENT, font=FONT)
+
+    def game_over(self):
+        self.clear()
+        self.goto(0, 0)
+        if self.score > self.max_s:
+            self.update_max_score()
+        self.write('GAME OVER', align=ALIGNMENT, font=FONT)
+
+    def update_max_score(self):
+        with open('max_score.txt', mode='w') as max_score:
+            max_score.write(f'{self.score}')
 
     @staticmethod
     def get_max_score():

@@ -36,3 +36,12 @@ class Game:
             # destroy aliens
             if self.cannon.shots:
                 self.aliens.destroy_alien(self.cannon.shots, self.cannon, self.scoreboard)
+            # check hit cannon
+            self.cannon.hit_cannon(self.aliens.shots, self.scoreboard)
+            # check game over
+            if self.scoreboard.lives < 0:
+                self.scoreboard.game_over()
+                return
+            if len(self.aliens.aliens) == 0:
+                self.scoreboard.game_over()
+                return

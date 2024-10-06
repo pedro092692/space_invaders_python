@@ -53,27 +53,32 @@ class Alien(Turtle):
                 self.direction = (20, 0)
 
         # .9% probability of alien shots
-        if random.random() < 0.09:
+        if random.random() < 0.4:
             self.shoot()
         self.shot.move_shot(self.shots)
 
 
     def shoot(self):
-        alien = random.choice(self.aliens[-10:])
-        shot = self.shot.create_bullet(alien.xcor(), alien.ycor(), position=-10, color='white')
-        self.shots.append(shot)
+        if self.aliens:
+            alien = random.choice(self.aliens[-10:])
+            shot = self.shot.create_bullet(alien.xcor(), alien.ycor(), position=-10, color='white')
+            self.shots.append(shot)
 
     def destroy_alien(self, shots, cannon, board):
-        for alien in self.aliens:
-            for shot in shots:
-                if alien.distance(shot) < 20:
-                    # destroy alien
-                    self.aliens.remove(alien)
-                    self.del_turtle(alien)
-                    # destroy bullet
-                    cannon.destroy_bullet(shot)
-                    # add score
-                    board.add_score()
+        if self.aliens:
+            for alien in self.aliens:
+                for shot in shots:
+                    if alien.distance(shot) < 20:
+                        # destroy alien
+                        try:
+                            self.aliens.remove(alien)
+                            self.del_turtle(alien)
+                        except ValueError as e:
+                            pass
+                        # destroy bullet
+                        cannon.destroy_bullet(shot)
+                        # add score
+                        board.add_score()
 
 
     @staticmethod

@@ -37,3 +37,10 @@ class Cannon(Turtle):
         bullet.clear()
         bullet.reset()
         bullet.hideturtle()
+
+    def hit_cannon(self, bullets, board):
+        for bullet in bullets:
+            if self.distance(bullet) < 25:
+                self.goto(0, -280)
+                board.subtract_lives()
+                time.sleep(0.5)
