@@ -63,7 +63,21 @@ class Alien(Turtle):
         shot = self.shot.create_bullet(alien.xcor(), alien.ycor(), position=-10, color='white')
         self.shots.append(shot)
 
+    def destroy_alien(self, shots, cannon):
+        for alien in self.aliens:
+            for shot in shots:
+                if alien.distance(shot) < 20:
+                    # destroy alien
+                    self.aliens.remove(alien)
+                    self.del_turtle(alien)
+                    # destroy bullet
+                    cannon.destroy_bullet(shot)
 
+    @staticmethod
+    def del_turtle(turtle):
+        turtle.reset()
+        turtle.hideturtle()
+        turtle.clear()
 
 
 

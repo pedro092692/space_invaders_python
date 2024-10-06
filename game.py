@@ -25,8 +25,12 @@ class Game:
     def play_game(self):
 
         while True:
-
             time.sleep(0.1)
             self.screen.update()
+            # move aliens
             self.aliens.move_aliens()
+            # move bullets of cannon
             self.cannon.shot.move_shot(self.cannon.shots)
+            # destroy aliens
+            if self.cannon.shots:
+                self.aliens.destroy_alien(self.cannon.shots, self.cannon)

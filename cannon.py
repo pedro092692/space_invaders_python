@@ -1,3 +1,4 @@
+import time
 from turtle import Turtle
 from shoot import Shoot
 
@@ -16,6 +17,7 @@ class Cannon(Turtle):
         self.shot.speed *= -1
         self.shots = []
 
+
     def move_right(self):
         if self.xcor() < 380:
             new_x_cor = self.xcor() + self.speed
@@ -29,3 +31,9 @@ class Cannon(Turtle):
     def shot_bullet(self):
         shot = self.shot.create_bullet(x=self.xcor(), y=self.ycor(), position=10, color='blue')
         self.shots.append(shot)
+
+    def destroy_bullet(self, bullet):
+        self.shots.remove(bullet)
+        bullet.clear()
+        bullet.reset()
+        bullet.hideturtle()
