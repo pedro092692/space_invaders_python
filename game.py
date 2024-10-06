@@ -1,6 +1,7 @@
 import random
 from turtle import Screen, Turtle
 from aliens import Alien
+from scoreboard import ScoreBoard
 from shoot import Shoot
 from cannon import Cannon
 import time
@@ -15,6 +16,7 @@ class Game:
         self.screen.tracer(0)
         self.aliens = Alien()
         self.cannon = Cannon()
+        self.scoreboard = ScoreBoard()
 
         # move cannon
         self.screen.listen()
@@ -33,4 +35,4 @@ class Game:
             self.cannon.shot.move_shot(self.cannon.shots)
             # destroy aliens
             if self.cannon.shots:
-                self.aliens.destroy_alien(self.cannon.shots, self.cannon)
+                self.aliens.destroy_alien(self.cannon.shots, self.cannon, self.scoreboard)
