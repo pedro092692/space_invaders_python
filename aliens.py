@@ -1,5 +1,6 @@
+import random
 from turtle import Turtle
-
+from shoot import Shoot
 
 class Alien(Turtle):
 
@@ -19,8 +20,12 @@ class Alien(Turtle):
         # create aliens
         self.create_aliens()
 
+        # move direction
         self.direction = (20, 0)
 
+        # shoot
+        self.shots = []
+        self.shot  = Shoot()
 
     def create_aliens(self):
         for alien in range(1, 41):
@@ -46,6 +51,18 @@ class Alien(Turtle):
                 self.direction = (-20, 0)
             if self.aliens[::-1][0].xcor() <= 72:
                 self.direction = (20, 0)
+
+        # 13% probability of alien shots
+        if random.random() < 0.13:
+            self.shoot()
+        self.shot.move_shot(self.shots)
+
+
+    def shoot(self):
+        alien = random.choice(self.aliens[-10:])
+        shot = self.shot.create_bullet(alien.xcor(), alien.ycor(), position=-10)
+        self.shots.append(shot)
+
 
 
 

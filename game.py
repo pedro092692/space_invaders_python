@@ -1,5 +1,7 @@
+import random
 from turtle import Screen, Turtle
 from aliens import Alien
+from shoot import Shoot
 import time
 
 class Game:
