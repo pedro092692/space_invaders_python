@@ -8,11 +8,11 @@ class Shoot:
     def __init__(self):
         self.speed = -10
 
-    def create_bullet(self, x, y, position):
+    def create_bullet(self, x, y, position, color):
         shot = Turtle('square')
         shot.resizemode('user')
         shot.shapesize(0.9, 0.1, 1)
-        shot.color('white')
+        shot.color(color)
         shot.penup()
         shot.hideturtle()
         shot.setposition(x, y + position)

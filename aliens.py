@@ -60,7 +60,7 @@ class Alien(Turtle):
 
     def shoot(self):
         alien = random.choice(self.aliens[-10:])
-        shot = self.shot.create_bullet(alien.xcor(), alien.ycor(), position=-10)
+        shot = self.shot.create_bullet(alien.xcor(), alien.ycor(), position=-10, color='white')
         self.shots.append(shot)
 
 

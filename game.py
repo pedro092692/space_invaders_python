@@ -20,6 +20,7 @@ class Game:
         self.screen.listen()
         self.screen.onkeypress(key='Right', fun=self.cannon.move_right)
         self.screen.onkeypress(key='Left', fun=self.cannon.move_left)
+        self.screen.onkeypress(key='space', fun=self.cannon.shot_bullet)
 
     def play_game(self):
 
@@ -28,3 +29,4 @@ class Game:
             time.sleep(0.1)
             self.screen.update()
             self.aliens.move_aliens()
+            self.cannon.shot.move_shot(self.cannon.shots)
